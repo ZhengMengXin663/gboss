@@ -47,7 +47,7 @@ function testSave() {
     })
 }
 
-testSave()
+// testSave()
 
 // 3.2. 通过Model的find()/findOne()查询多个或一个数据
 function testFind() {
@@ -85,9 +85,9 @@ function testUpdate() {
 
 // 3.4. 通过Model的remove()删除匹配的数据
 function testRemove() {
-    UserModel.remove({_id: '5a69d23dcbe9821448e5f799'}, function (err, result) {
+    UserModel.remove({_id: '5aa87ec3dea4091d6066b123'}, function (err, result) {
         console.log('remove()', err, result) // { ok: 1, n: 1 }
     })
 }
-// testRemove()
+testRemove()
 
