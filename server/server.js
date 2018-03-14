@@ -1,8 +1,19 @@
+/*
+启动服务器应用的模块
+1. 引入express
+2. 生成应用对象(执行express函数)
+3. 注册根路由(使用app的use())
+4. 启动服务器(使用app监听指定端口)
+ */
+// 1. 引入express
 const express =require('express')
-app=express();
 const bodyParser = require('body-parser') // 解析请求体
 const cookieParser = require('cookie-parser') // 解析cookie
 const appRouter=require('./appRouter');
+// 2. 生成应用对象(执行express函数)
+app=express();
+
+// 3. 注册根路由(使用app的use())
 // app.use('/', function (req, res) {
 //     res.send('hello World!')
 // });
@@ -11,7 +22,7 @@ app.use(bodyParser.json()); // 解析请求体(ajax请求: json数据格式)
 app.use(bodyParser.urlencoded({ extended: false })); // 解析请求体(表单数据)
 // 注册上路由器
 app.use('/api',appRouter);
-
+// 4. 启动服务器(使用app监听指定端口)
 app.listen('3010',function(){
     console.log('this is open port : 3010')
 });

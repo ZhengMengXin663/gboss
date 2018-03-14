@@ -14,7 +14,9 @@ const md5=require('blueimp-md5');
 const router = expiress.Router();
 // 3. 注册n个路由
 const models = require('./models');
+//  接收Model
 const UserModel = models.getModel('user');
+//加入过滤
 const filter={pwd:0,__v:0};
 /*
 const models = require('./models');
