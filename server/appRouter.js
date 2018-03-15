@@ -27,7 +27,7 @@ const UserModel = models
  */
 
 router.post('/register',function(req,res){
-    const {name,pwd,type}=req.body
+    const {name,pwd,type}=req.body;
     UserModel.findOne({name},function(err,user){
         if(user){
             res.send({code:1,msg:'此用户已存在'})
@@ -35,9 +35,7 @@ router.post('/register',function(req,res){
             new UserModel({name,type,pwd:md5(pwd)}).save(
                 function (err,user) {
                     res.cookie('user',user._id);
-                    res.send({code:0,data:{_id:user._id,
-                    name,type
-                    }})
+                    res.send({code:0,data:{_id:user._id, name,type}})
                 })
         }
     })

@@ -23,6 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false })); // 解析请求体(表单�
 // 注册上路由器
 app.use('/api',appRouter);
 // 4. 启动服务器(使用app监听指定端口)
-app.listen('3010',function(){
-    console.log('this is open port : 3010')
+app.listen('4000',function(){
+    console.log('this is open port : 4000')
 });
