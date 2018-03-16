@@ -10,8 +10,6 @@ class Login extends React.Component{
         pwd:''
     };
     goRegister=()=>{
-        let {user}= this.props;
-       user.msg='';
         this.props.history.replace('/register')
 
     };
@@ -23,6 +21,7 @@ class Login extends React.Component{
     };
     render(){
         let {user}=this.props;
+        console.log(this.props)
         if(user.redirectTo){
             return <Redirect to={user.redirectTo}/>
         }
@@ -44,6 +43,6 @@ class Login extends React.Component{
     }
 }
 export default connect(
-    state=>({user:state.user}),
+    state => ({user:state.user}),
     {login}
 )(Login)
