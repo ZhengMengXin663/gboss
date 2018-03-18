@@ -8,11 +8,11 @@ export default class AvatarSelector  extends React.Component{
         this.avatarList = 'boy,girl,man,woman,bull,chick,crab,hedgehog,hippopotamus,koala,lemur,pig,tiger,whale,zebra'
             .split(',')
             .map(text => ({
-                icon: require(`./imgs/${text}.png`),
+                icon: require(`../../assets/imgs/${text}.png`),
                 text
             }))
     }
-    static proptypes={
+    static PropTypes={
         setAvatar:PropTypes.func.isRequired
     }
 

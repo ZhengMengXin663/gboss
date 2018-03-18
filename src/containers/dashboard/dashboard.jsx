@@ -4,11 +4,47 @@ import BossInfo from'../boss-info/boss-info'
 import GeniusInfo from '../genius-info/genius-info'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
+import Msg from'../msg/msg'
+import User from'../user/user'
+import NotFound from '../../components/not-found/not-found'
 import {connect}from 'react-redux'
 import {getUser}from'../../redux/actions'
+import NavFooter from'../../components/nav-footer/nav-footer'
 import {getRedirectPath} from '../../utils/index'
 import cookies from 'browser-cookies'
+import {NavBar}from'antd-mobile';
 class Dashboard extends React.Component{
+    navList = [
+        {
+            path: '/boss', // 路由路径
+            component: Boss,
+            title: '牛人列表',
+            icon: 'boss',
+            text: '牛人',
+        },
+        {
+            path: '/genius', // 路由路径
+            component: Genius,
+            title: 'BOSS列表',
+            icon: 'job',
+            text: 'BOSS',
+        },
+        {
+            path: '/msg', // 路由路径
+            component: Msg,
+            title: '消息列表',
+            icon: 'msg',
+            text: '消息',
+        },
+        {
+            path: '/user', // 路由路径
+            component: User,
+            title: '个人中心',
+            icon: 'user',
+            text: '我',
+        }
+    ];
+
 
     componentDidMount(){
        const userId= cookies.get('userId');
@@ -20,31 +56,45 @@ class Dashboard extends React.Component{
     render(){
         const userId = cookies.get('userId');
         if(!userId){
+
             return <Redirect to='/login'/>
         }
         // cookie中有userid
         // redux中的user是否有数据
         const {user}=this.props;
-        console.log(user)
+        const pathname =this.props.location.pathname;
         if(!user._id){
-            console.log(0);
             return null
         }else{
-            const pathname =this.props.location.pathname;
+
             if(pathname==='/'){
                 const path= getRedirectPath(user.type,user.avatar)
                 return <Redirect to={path}/>
             }
+
+            if(user.type==='boss'){
+                this.navList[1].hide=true;
+            }else{
+                this.navList[0].hide=true;
+            }
+
         }
-        return(
+        const currentNav=this.navList.find(nav=>nav.path===pathname);
+
+            return(
+
             <div>
+                {currentNav?<NavBar>{currentNav.title}</NavBar>:null}
                 <Switch>
                     <Route path='/bossinfo' component={BossInfo} />
                     <Route path='/geniusinfo' component={GeniusInfo}/>
                     <Route path='/boss' component={Boss}/>
+                    <Route path='/user' component={User} />
+                    <Route path='/msg' component={Msg}/>
                     <Route path='/genius' component={Genius}/>
+                    <Route component={NotFound}/>
                 </Switch>
-
+                {currentNav?<NavFooter navList={this.navList}/>:null}
             </div>
         )
     }

@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default class Boss extends React.Component{
+export default class Msg extends React.Component{
     render(){
         return(
             <div>
-                genius
+                msg
             </div>
         )
     }

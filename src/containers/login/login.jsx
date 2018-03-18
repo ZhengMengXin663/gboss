@@ -21,7 +21,6 @@ class Login extends React.Component{
     };
     render(){
         let {user}=this.props;
-        console.log(this.props)
         if(user.redirectTo){
             return <Redirect to={user.redirectTo}/>
         }

@@ -7,7 +7,7 @@ const errorMsg=(msg)=>({type:ERROR_MSG,data:msg})
 const authSuccess=(user)=>({type:AUTH_SUCCESS,data:user})
 
 const receiveUser=(user)=>({type:RECEIVE_USER,data:user});
-const resetUser=(msg)=>({type:RESET_USER,data:msg});
+export const resetUser=(msg)=>({type:RESET_USER,data:msg});
 //异步请求注册消息
 export function register({name,pwd,pwd2,type}) {
     if(!name || !pwd){
